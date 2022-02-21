@@ -2,15 +2,31 @@ name: Build Gitbook
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, dev ]
 
 jobs:
-  build:
-
+  build_main:
+    if : ${{ github.repository_owner == 'changanyyy'}}
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
+    - name: Gitbook Action           
+      uses: ZanderZhao/gitbook-action@v1.2.4  
+      with:                                   
+        token: ${{ secrets.PERSONAL }}
+        source_branch: main
+        
+  build_dev:
+    if : ${{ github.repository_owner != 'changanyyy'}}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Gitbook Action           # https://github.com/ZanderZhao/gitbook-action/releases
+      uses: ZanderZhao/gitbook-action@v1.2.4  # -> or ZanderZhao/gitbook-action@master.  If not use master click above, use latest please 
+      with:                                   #    or fork this repo and use YourName/gitbook-action@master
+        token: ${{ github.token }}
+        source_branch: dev
+
     #- uses: actions/setup-node@v2
     #  with:
     #    node-version: '10.15'
@@ -18,8 +34,3 @@ jobs:
     #- run: gitbook fetch 3.2.3
     #- run: gitbook install
     #- run: gitbook build . public
-    - name: Gitbook Action           # https://github.com/ZanderZhao/gitbook-action/releases
-      uses: ZanderZhao/gitbook-action@v1.2.4  # -> or ZanderZhao/gitbook-action@master.  If not use master click above, use latest please 
-      with:                                   #    or fork this repo and use YourName/gitbook-action@master
-        token: ${{ secrets.PERSONAL }}
-        source_branch: main
