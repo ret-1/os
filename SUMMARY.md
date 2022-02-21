@@ -5,7 +5,7 @@
   * [了解x86汇编文件](bi-bei-de-gong-ju/le-jie-x86-hui-bian-wen-jian.md)
   * [QEMU+GDB](bi-bei-de-gong-ju/qemu+gdb.md)
   * [Git管理项目](bi-bei-de-gong-ju/git-guan-li-xiang-mu.md)
-* [OSLab1 - 如何启动一个OS](readme/<README.md>)
+* [OSLab1 - 如何启动一个OS](readme/README.md)
   * [基础知识](readme/ji-chu-zhi-shi/README.md)
     * [计算机的物理地址空间](readme/ji-chu-zhi-shi/ji-suan-ji-de-wu-li-di-zhi-kong-jian.md)
     * [开机的第一条指令](readme/ji-chu-zhi-shi/kai-ji-de-di-yi-tiao-zhi-ling/README.md)
