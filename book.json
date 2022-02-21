@@ -6,7 +6,15 @@
     ],
     "pluginsConfig": {
         "callouts": {
-            "showTypeInHeader": false
+            "showTypeInHeader": false,
+            "question_red": {
+                "alert": "warning",
+                "picto": "circle-question"
+            },
+            "question_blue": {
+                "alert": "info",
+                "picto": "circle-question"
+            }
         }
     }
 }
