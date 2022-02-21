@@ -524,27 +524,27 @@
 <p>&#x54C8;&#x54C8;&#xFF0C;&#x5F00;&#x73A9;&#x7B11;&#x7684;&#xFF01;&#x5B9E;&#x9645;&#x4E0A;&#x5927;&#x90E8;&#x5206;&#x90FD;&#x662F;&#x5B66;&#x8FC7;&#x7684;&#x6BD4;&#x8F83;&#x57FA;&#x7840;&#x7684;&#x6307;&#x4EE4;&#x3002;</p>
 <h2 id="&#x4E00;&#x4E2A;&#x7B80;&#x77ED;&#x7684;&#x6C47;&#x7F16;&#x6587;&#x4EF6;">&#x4E00;&#x4E2A;&#x7B80;&#x77ED;&#x7684;&#x6C47;&#x7F16;&#x6587;&#x4EF6;</h2>
 <p>&#x4EE5;&#x4E0B;&#x9762;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x4E3A;&#x4F8B;&#xFF1A;</p>
-<pre><code class="lang-wasm"> # test1.s 
- .section .data 
- .section .text 
- .globl _start 
- _start: 
-     movl $1, %eax 
-     movl $3, %ebx 
-     int $0x80
+<pre><code class="lang-wasm"># test1.s
+.section .data
+.section .text
+.globl _start
+_start:
+    movl $1, %eax
+    movl $3, %ebx
+    int $0x80
 </code></pre>
 <p>&#x6211;&#x4EEC;&#x5148;&#x5BF9;&#x5B83;&#x8FDB;&#x884C;&#x6C47;&#x7F16;&#x64CD;&#x4F5C;&#xFF1A;</p>
-<pre><code class="lang-shell"> njucs&gt; gcc -c test1.s -o test1.o
+<pre><code class="lang-shell">njucs&gt; gcc -c test1.s -o test1.o
 </code></pre>
 <p>&#x7136;&#x540E;&#x518D;&#x8FDB;&#x884C;&#x94FE;&#x63A5;&#x64CD;&#x4F5C;&#xFF1A;</p>
-<pre><code class="lang-shell"> njucs&gt; gcc test1.o -o test1
+<pre><code class="lang-shell">njucs&gt; gcc test1.o -o test1
 </code></pre>
 <p>&#x6B64;&#x65F6;&#x4F1A;&#x8F93;&#x51FA;&#x5982;&#x4E0B;&#x7684;&#x62A5;&#x9519;&#x4FE1;&#x606F;&#xFF1A;</p>
 <ul>
 <li><code>_start</code>&#x51FD;&#x6570;&#x51FA;&#x73B0;&#x4E86;&#x53CC;&#x91CD;&#x5B9A;&#x4E49;</li>
 <li><code>_start</code>&#x51FD;&#x6570;&#x51FA;&#x73B0;&#x4E86;&#x672A;&#x5B9A;&#x4E49;&#x7684;&#x5F15;&#x7528;<code>main</code></li>
 </ul>
-<pre><code class="lang-shell"> /usr/bin/ld: test1.o: in function `_start&apos;:
+<pre><code class="lang-shell">/usr/bin/ld: test1.o: in function `_start&apos;:
 (.text+0x0): multiple definition of `_start&apos;; /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/Scrt1.o:(.text+0x0): first defined here
 /usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/Scrt1.o: in function `_start&apos;:
 (.text+0x24): undefined reference to `main&apos;
@@ -552,10 +552,10 @@ collect2: error: ld returned 1 exit status
 </code></pre>
 <div class="panel panel-danger"><div class="panel-heading"><h3 class="panel-title" id="&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x51FA;&#x73B0;&#x91CD;&#x5B9A;&#x4E49;&#xFF1F;"><i class="fa circle-question"></i> &#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x51FA;&#x73B0;&#x91CD;&#x5B9A;&#x4E49;&#xFF1F;</h3></div><div class="panel-body"><p>&#x5B9E;&#x9645;&#x4E0A;&#xFF0C;<code>_start</code>&#x51FD;&#x6570;&#x662F;&#x94FE;&#x63A5;&#x5668;&#x9ED8;&#x8BA4;&#x7684;<strong>&#x7A0B;&#x5E8F;&#x5165;&#x53E3;</strong>&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x901A;&#x8FC7;&#x94FE;&#x63A5;&#x5668;<code>ld</code>&#x94FE;&#x63A5;&#x7684;ELF&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x6240;&#x6267;&#x884C;&#x7684;&#x7B2C;&#x4E00;&#x6761;&#x6307;&#x4EE4;&#x5C31;&#x662F;&#x4ECE;_start&#x7684;&#x7B2C;&#x4E00;&#x6761;&#x6307;&#x4EE4;&#x3002;</p><p>&#x800C;C/C++&#x7A0B;&#x5E8F;&#xFF0C;&#x90FD;&#x662F;&#x4ECE;<code>main</code>&#x51FD;&#x6570;&#x5F00;&#x59CB;&#x6267;&#x884C;&#x7684;&#x3002;&#x90A3;&#x4E48;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x63A8;&#x6D4B;&#x51FA;&#xFF1A;&#x901A;&#x8FC7;<code>gcc</code>&#x9ED8;&#x8BA4;&#x94FE;&#x63A5;&#x7684;ELF&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#xFF0C;&#x4E00;&#x5B9A;&#x6709;&#x4E00;&#x6BB5;&#x4ECE;<code>_start</code>&#x8DF3;&#x8F6C;&#x5230;<code>main</code>&#x7684;&#x4EE3;&#x7801;</p><p>&#x6240;&#x4EE5;&#x7ED3;&#x5408;&#x62A5;&#x9519;&#x4FE1;&#x606F;(<strong>&#x62A5;&#x9519;&#x7684;&#x7B2C;&#x4E8C;&#x884C;&#x6709;&#x4E2A;Scrt1.o</strong>&#xFF09;&#xFF0C;&#x6211;&#x4EEC;&#x4E0D;&#x96BE;&#x731C;&#x6D4B;&#x51FA;&#x9519;&#x8BEF;&#x53D1;&#x751F;&#x7684;&#x539F;&#x56E0;&#xFF1A;<code>gcc</code>&#x5728;&#x94FE;&#x63A5;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x9ED8;&#x8BA4;&#x4F1A;&#x628A;<code>Scrt1.o</code>&#x540C;&#x65F6;&#x94FE;&#x63A5;&#x5230;&#x6211;&#x4EEC;&#x7684;&#x7A0B;&#x5E8F;&#x91CC;&#xFF0C;&#x800C;&#x5176;&#x4E2D;&#x5305;&#x542B;&#x4E86;<code>_start</code>&#x51FD;&#x6570;&#xFF0C;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x7684;&#x4F5C;&#x7528;&#x6B63;&#x662F;<strong>&#x8DF3;&#x8F6C;&#x5230;main&#x51FD;&#x6570;</strong>&#x3002;</p></div></div>
 <p>&#x63A5;&#x4E0B;&#x6765;&#x6539;&#x7528;<code>ld</code>&#x8FDB;&#x884C;&#x94FE;&#x63A5;&#xFF0C;&#x7136;&#x540E;&#x8FD0;&#x884C;&#xFF1A;</p>
-<pre><code class="lang-shell"> njucs&gt; ld test1.o -o test1 
- njucs&gt; ./test1 
- njucs&gt; echo $?
- 3
+<pre><code class="lang-shell">njucs&gt; ld test1.o -o test1
+njucs&gt; ./test1
+njucs&gt; echo $?
+3
 </code></pre>
 <p>&#x5728;&#x6267;&#x884C;&#x7F16;&#x8BD1;&#x597D;&#x7684;&#x7A0B;&#x5E8F;&#x4E4B;&#x540E;&#xFF0C;&#x6211;&#x4EEC;<code>echo $?</code>&#x6765;&#x67E5;&#x770B;&#x7A0B;&#x5E8F;&#x8FD4;&#x56DE;&#x503C;&#xFF0C;&#x53D1;&#x73B0;&#x662F;3&#x3002;</p>
 <p>&#x6211;&#x4EEC;&#x5728;<code>ICS</code>&#x91CC;&#x9762;&#x5B66;&#x5230;: </p>
@@ -624,7 +624,7 @@ collect2: error: ld returned 1 exit status
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"了解x86汇编文件","level":"1.2.1","depth":2,"next":{"title":"QEMU+GDB","level":"1.2.2","depth":2,"path":"bi-bei-de-gong-ju/qemu+gdb.md","ref":"bi-bei-de-gong-ju/qemu+gdb.md","articles":[]},"previous":{"title":"OSLab0 - 必备工具","level":"1.2","depth":1,"path":"bi-bei-de-gong-ju/README.md","ref":"bi-bei-de-gong-ju/README.md","articles":[{"title":"了解x86汇编文件","level":"1.2.1","depth":2,"path":"bi-bei-de-gong-ju/le-jie-x86-hui-bian-wen-jian.md","ref":"bi-bei-de-gong-ju/le-jie-x86-hui-bian-wen-jian.md","articles":[]},{"title":"QEMU+GDB","level":"1.2.2","depth":2,"path":"bi-bei-de-gong-ju/qemu+gdb.md","ref":"bi-bei-de-gong-ju/qemu+gdb.md","articles":[]},{"title":"Git管理项目","level":"1.2.3","depth":2,"path":"bi-bei-de-gong-ju/git-guan-li-xiang-mu.md","ref":"bi-bei-de-gong-ju/git-guan-li-xiang-mu.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hints","callouts","intopic-toc"],"pluginsConfig":{"callouts":{"showTypeInHeader":false,"question_red":{"alert":"danger","picto":"circle-question"},"question_blue":{"alert":"info","picto":"circle-question"}},"intopic-toc":{"isCollapsed":true,"isScrollspyActive":true,"label":"In this article","maxDepth":6,"mode":"nested","selector":".markdown-section h2, .markdown-section h3","visible":true},"search":{},"hints":{"danger":"fa fa-exclamation-circle","info":"fa fa-info-circle","tip":"fa fa-mortar-board","working":"fa fa-wrench"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"bi-bei-de-gong-ju/le-jie-x86-hui-bian-wen-jian.md","mtime":"2022-02-21T15:11:05.527Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-21T15:11:35.692Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"了解x86汇编文件","level":"1.2.1","depth":2,"next":{"title":"QEMU+GDB","level":"1.2.2","depth":2,"path":"bi-bei-de-gong-ju/qemu+gdb.md","ref":"bi-bei-de-gong-ju/qemu+gdb.md","articles":[]},"previous":{"title":"OSLab0 - 必备工具","level":"1.2","depth":1,"path":"bi-bei-de-gong-ju/README.md","ref":"bi-bei-de-gong-ju/README.md","articles":[{"title":"了解x86汇编文件","level":"1.2.1","depth":2,"path":"bi-bei-de-gong-ju/le-jie-x86-hui-bian-wen-jian.md","ref":"bi-bei-de-gong-ju/le-jie-x86-hui-bian-wen-jian.md","articles":[]},{"title":"QEMU+GDB","level":"1.2.2","depth":2,"path":"bi-bei-de-gong-ju/qemu+gdb.md","ref":"bi-bei-de-gong-ju/qemu+gdb.md","articles":[]},{"title":"Git管理项目","level":"1.2.3","depth":2,"path":"bi-bei-de-gong-ju/git-guan-li-xiang-mu.md","ref":"bi-bei-de-gong-ju/git-guan-li-xiang-mu.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["hints","callouts","intopic-toc"],"pluginsConfig":{"callouts":{"showTypeInHeader":false,"question_red":{"alert":"danger","picto":"circle-question"},"question_blue":{"alert":"info","picto":"circle-question"}},"intopic-toc":{"isCollapsed":true,"isScrollspyActive":true,"label":"In this article","maxDepth":6,"mode":"nested","selector":".markdown-section h2, .markdown-section h3","visible":true},"search":{},"hints":{"danger":"fa fa-exclamation-circle","info":"fa fa-info-circle","tip":"fa fa-mortar-board","working":"fa fa-wrench"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"bi-bei-de-gong-ju/le-jie-x86-hui-bian-wen-jian.md","mtime":"2022-02-21T15:24:38.903Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-02-21T15:25:10.948Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
