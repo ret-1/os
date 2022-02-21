@@ -8,14 +8,14 @@
 以下面这段代码为例：
 
 ```wasm
- # test1.s 
- .section .data 
- .section .text 
- .globl _start 
- _start: 
-     movl $1, %eax 
-     movl $3, %ebx 
-     int $0x80
+# test1.s
+.section .data
+.section .text
+.globl _start
+_start:
+    movl $1, %eax
+    movl $3, %ebx
+    int $0x80
 ```
 
 
@@ -23,13 +23,13 @@
 我们先对它进行汇编操作：
 
 ```shell
- njucs> gcc -c test1.s -o test1.o
+njucs> gcc -c test1.s -o test1.o
 ```
 
 然后再进行链接操作：
 
 ```shell
- njucs> gcc test1.o -o test1
+njucs> gcc test1.o -o test1
 ```
 
 此时会输出如下的报错信息：
@@ -38,7 +38,7 @@
 * `_start`函数出现了未定义的引用`main`
 
 ```shell
- /usr/bin/ld: test1.o: in function `_start':
+/usr/bin/ld: test1.o: in function `_start':
 (.text+0x0): multiple definition of `_start'; /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/Scrt1.o:(.text+0x0): first defined here
 /usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/Scrt1.o: in function `_start':
 (.text+0x24): undefined reference to `main'
@@ -55,10 +55,10 @@ collect2: error: ld returned 1 exit status
 接下来改用`ld`进行链接，然后运行：
 
 ```shell
- njucs> ld test1.o -o test1 
- njucs> ./test1 
- njucs> echo $?
- 3
+njucs> ld test1.o -o test1
+njucs> ./test1
+njucs> echo $?
+3
 ```
 
 在执行编译好的程序之后，我们`echo $?`来查看程序返回值，发现是3。
