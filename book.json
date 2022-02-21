@@ -8,13 +8,16 @@
         "callouts": {
             "showTypeInHeader": false,
             "question_red": {
-                "alert": "warning",
+                "alert": "danger",
                 "picto": "circle-question"
             },
             "question_blue": {
                 "alert": "info",
                 "picto": "circle-question"
             }
+        },
+        "intopic-toc": {
+            "maxDepth": 3
         }
     }
 }
